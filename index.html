@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Md Mehedi Hasan Bhuiyan — Ph.D. candidate in Big Data Analytics at the University of Central Florida. High-dimensional statistical inference, multi-omics, and population health.">
+<meta name="author" content="Md Mehedi Hasan Bhuiyan">
+
+<!-- link preview (update the URL after your site is live) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Md Mehedi Hasan Bhuiyan">
+<meta property="og:description" content="Md Mehedi Hasan Bhuiyan — Ph.D. candidate in Big Data Analytics at the University of Central Florida. High-dimensional statistical inference, multi-omics, and population health.">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230E6E5E'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' font-weight='bold' fill='white' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+
+<style>
+  html { padding: env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px); }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+
+<title>Mehedi Bhuiyan — Statistics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+/* Layout: single measured column under a thin sticky rule; records, not cards. */
+:root{
+  --paper:#F5F7F7;
+  --surface:#FFFFFF;
+  --ink:#15212A;
+  --ink-2:#4C5C66;
+  --ink-3:#73858F;
+  --line:#DCE4E5;
+  --accent:#0E6E5E;
+  --accent-soft:rgba(14,110,94,.09);
+  --flag:#8A6017;
+  --flag-soft:rgba(138,96,23,.10);
+
+  --serif:"Spectral",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#10171B;
+    --surface:#161F25;
+    --ink:#E7EDEF;
+    --ink-2:#A2B2BA;
+    --ink-3:#7E8F98;
+    --line:#26323A;
+    --accent:#56C6AE;
+    --accent-soft:rgba(86,198,174,.13);
+    --flag:#D4A355;
+    --flag-soft:rgba(212,163,85,.13);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#10171B;
+  --surface:#161F25;
+  --ink:#E7EDEF;
+  --ink-2:#A2B2BA;
+  --ink-3:#7E8F98;
+  --line:#26323A;
+  --accent:#56C6AE;
+  --accent-soft:rgba(86,198,174,.13);
+  --flag:#D4A355;
+  --flag-soft:rgba(212,163,85,.13);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0 0 auto;
+  height:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);
+}
+.wrap{
+  max-width:860px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)}
+a:hover{border-bottom-color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:19;
+  background:var(--paper);border-bottom:1px solid var(--line);
+}
+nav .wrap{display:flex;align-items:center;gap:18px;padding-block:11px}
+.brand{
+  font-family:var(--serif);font-weight:600;font-size:1rem;
+  color:var(--ink);border:0;white-space:nowrap;flex:0 0 auto;
+}
+.navlinks{
+  display:flex;gap:17px;margin-left:auto;overflow-x:auto;
+  scrollbar-width:none;min-width:0;
+}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{
+  font-size:.8rem;letter-spacing:.055em;text-transform:uppercase;
+  color:var(--ink-2);border:0;white-space:nowrap;padding-block:2px;
+}
+.navlinks a:hover{color:var(--accent)}
+
+/* ---------- hero ---------- */
+header.hero{padding-block:52px 40px;border-bottom:1px solid var(--line)}
+h1{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(2.1rem,6vw,3.1rem);line-height:1.1;
+  margin:0 0 10px;letter-spacing:-.015em;text-wrap:balance;
+}
+.role{
+  font-family:var(--mono);font-size:.82rem;letter-spacing:.03em;
+  color:var(--ink-2);margin:0 0 22px;
+}
+.thesis{
+  font-family:var(--serif);font-size:clamp(1.12rem,2.6vw,1.34rem);
+  line-height:1.52;margin:0 0 26px;max-width:62ch;color:var(--ink);
+}
+.links{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.92rem}
+
+/* ---------- glance strip ---------- */
+.glance{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));
+  gap:1px;background:var(--line);border:1px solid var(--line);
+  margin:34px 0 0;
+}
+.glance div{background:var(--paper);padding:13px 14px;min-width:0}
+.glance b{
+  display:block;font-family:var(--mono);font-size:1.32rem;font-weight:500;
+  color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.2;
+}
+.glance span{
+  display:block;font-size:.73rem;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--ink-3);margin-top:3px;
+}
+
+/* ---------- sections ---------- */
+section{padding-block:44px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+h2{
+  font-family:var(--mono);font-size:.78rem;font-weight:500;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 22px;
+}
+h3{
+  font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.3;
+  margin:0 0 8px;text-wrap:balance;
+}
+h4{
+  font-family:var(--sans);font-weight:600;font-size:1rem;margin:0 0 3px;
+}
+p{margin:0 0 15px;max-width:68ch}
+p:last-child{margin-bottom:0}
+.lede{font-family:var(--serif);font-size:1.1rem;line-height:1.6;color:var(--ink)}
+
+/* research areas */
+.areas{display:grid;gap:30px;margin-top:26px}
+.area{display:grid;grid-template-columns:auto 1fr;gap:0 16px;align-items:start}
+.area .num{
+  font-family:var(--mono);font-size:.78rem;color:var(--accent);
+  padding-top:.42rem;font-variant-numeric:tabular-nums;
+}
+.area p{color:var(--ink-2);font-size:.96rem}
+
+/* figure */
+figure{margin:32px 0 0;padding:0}
+.plot{overflow-x:auto;border:1px solid var(--line);background:var(--surface);padding:14px 12px}
+.plot svg{display:block;min-width:600px;width:100%;max-width:700px;height:auto;margin:0 auto}
+figcaption{font-size:.84rem;color:var(--ink-3);margin-top:10px;max-width:64ch}
+
+/* publication records */
+.recs{display:grid;gap:17px;margin-top:4px}
+.rec{display:grid;grid-template-columns:auto 1fr;gap:0 15px;align-items:start}
+.rec .idx{
+  font-family:var(--mono);font-size:.78rem;color:var(--ink-3);
+  padding-top:.3rem;font-variant-numeric:tabular-nums;
+}
+.rec .body{min-width:0;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
+.rec .body .me{color:var(--ink);font-weight:600}
+.rec .body cite{font-style:italic;color:var(--ink)}
+.rec .body a{font-size:.86rem;font-family:var(--mono);word-break:break-all}
+.sublabel{
+  font-family:var(--sans);font-size:.88rem;font-weight:600;color:var(--ink);
+  margin:30px 0 14px;display:flex;align-items:center;gap:10px;
+}
+.sublabel:first-of-type{margin-top:0}
+.sublabel::after{content:"";flex:1;height:1px;background:var(--line)}
+.chip{
+  display:inline-block;font-family:var(--mono);font-size:.68rem;
+  letter-spacing:.04em;text-transform:uppercase;padding:1px 6px;
+  border:1px solid var(--flag);color:var(--flag);background:var(--flag-soft);
+  vertical-align:1px;white-space:nowrap;
+}
+
+/* course table */
+.tablewrap{overflow-x:auto;margin-top:18px;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:520px;background:var(--surface)}
+caption{text-align:left;font-size:.88rem;font-weight:600;color:var(--ink);padding:0 0 10px}
+th,td{text-align:left;padding:8px 14px;border-bottom:1px solid var(--line);font-size:.9rem}
+th{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;background:var(--paper);
+}
+tbody tr:last-child td{border-bottom:0}
+td.code{font-family:var(--mono);font-size:.84rem;color:var(--accent);white-space:nowrap}
+td.term{font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
+td.lvl{color:var(--ink-2);white-space:nowrap}
+
+/* experience entries */
+.entries{display:grid;gap:26px}
+.entry .meta{
+  display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;
+  font-size:.84rem;color:var(--ink-3);margin-bottom:7px;
+}
+.entry .meta .when{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.entry ul{margin:9px 0 0;padding-left:1.15em}
+.entry li{margin-bottom:5px;font-size:.95rem;color:var(--ink-2)}
+.entry li::marker{color:var(--ink-3)}
+
+/* teaching prep list */
+.prep{display:grid;gap:11px;margin-top:20px}
+.prep div{display:grid;grid-template-columns:minmax(132px,auto) 1fr;gap:4px 16px;font-size:.93rem}
+.prep dt,.prep b{font-weight:600;color:var(--ink)}
+.prep span{color:var(--ink-2);min-width:0}
+
+/* contact */
+.contact{display:grid;gap:14px;margin-top:4px}
+.emailrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.emailrow code{
+  font-family:var(--mono);font-size:.95rem;background:var(--accent-soft);
+  color:var(--ink);padding:5px 9px;user-select:all;
+}
+button.copy{
+  font-family:var(--sans);font-size:.82rem;cursor:pointer;
+  background:transparent;color:var(--accent);border:1px solid var(--accent);
+  padding:5px 11px;
+}
+button.copy:hover{background:var(--accent-soft)}
+
+footer{padding-block:30px 46px;font-size:.82rem;color:var(--ink-3)}
+
+@media (max-width:620px){
+  .area{grid-template-columns:1fr;gap:4px}
+  .area .num{padding-top:0}
+  .rec{grid-template-columns:1fr;gap:3px}
+  .rec .idx{padding-top:0}
+  .prep div{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">M. M. H. Bhuiyan</a>
+    <div class="navlinks">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <h1>Md Mehedi Hasan Bhuiyan</h1>
+  <p class="role">Ph.D. Candidate, Big Data Analytics — University of Central Florida</p>
+  <p class="thesis">I develop statistical methods for data where the measurements far outnumber the
+    subjects, and apply them to cancer outcomes, chronic disease, and population health.</p>
+  <div class="links">
+    <a href="https://scholar.google.com/citations?user=TKDYNuAAAAAJ">Google Scholar</a>
+    <a href="https://www.linkedin.com/in/mmh-bhuiyan/">LinkedIn</a>
+    <a href="#contact">Contact</a>
+    <!-- Upload your CV as cv.pdf beside this file, then delete the two comment markers below. -->
+    <!-- <a href="cv.pdf">Curriculum Vitae (PDF)</a> -->
+  </div>
+
+  <div class="glance">
+    <div><b>5</b><span>Journal articles</span></div>
+    <div><b>5</b><span>Under review</span></div>
+    <div><b>9</b><span>Courses taught</span></div>
+    <div><b>204</b><span>Countries, GBD</span></div>
+    <div><b>2027</b><span>Ph.D. expected</span></div>
+  </div>
+</header>
+
+<section class="wrap" id="research">
+  <h2>Research</h2>
+  <p class="lede">My work joins statistical theory to biomedical and population health data. The
+    through-line is uncertainty: how to quantify it honestly when predictors outnumber observations,
+    and how to evaluate predictive models so that reported performance survives contact with new data.</p>
+
+  <div class="areas">
+    <div class="area">
+      <span class="num">01</span>
+      <div>
+        <h3>High-dimensional inference</h3>
+        <p>My dissertation, <em>Inference Using Debiased Fused Lasso</em>, addresses inference in
+          structured high-dimensional regression. The lasso and fused lasso make estimation possible
+          when predictors are numerous and correlated, but the regularization that buys that
+          tractability introduces bias that invalidates standard confidence intervals and hypothesis
+          tests. I develop debiasing procedures for this setting and establish their theoretical and
+          empirical properties. The methods apply directly to correlated biomarkers, ordered molecular
+          features, and other structured measurements where independence assumptions fail. Next:
+          extending these results to survival outcomes, generalized linear models, and longitudinal data.</p>
+      </div>
+    </div>
+
+    <div class="area">
+      <span class="num">02</span>
+      <div>
+        <h3>Multi-omics and clinical text</h3>
+        <p>In a study currently under review, I combined BioBERT-derived representations of clinical
+          text with sparse principal components of multi-omics data to predict breast cancer survival,
+          evaluated under a strictly leakage-controlled cross-validation protocol in which every
+          representation-learning step is refit inside each training fold. The finding is that a
+          substantial share of the performance reported in this literature reflects evaluation design
+          rather than biological signal — which matters for any model considered for clinical use.</p>
+      </div>
+    </div>
+
+    <div class="area">
+      <span class="num">03</span>
+      <div>
+        <h3>Population health</h3>
+        <p>I am a collaborator in the Global Burden of Disease Study and a named author on GBD 2023
+          analyses of HIV/AIDS, enteric infectious diseases, heart failure, and tetanus, covering 204
+          countries and territories across more than three decades. My first-author work applies
+          penalized regression to household-level determinants of child malnutrition in Bangladesh.
+          Earlier, I analyzed national survey data for UNICEF, USAID, and the Bangladesh Bureau of
+          Statistics, including the Multiple Indicator Cluster Survey of roughly 64,000 households.</p>
+      </div>
+    </div>
+  </div>
+
+  <figure>
+    <div class="plot">
+      <svg viewBox="0 0 700 300" role="img"
+           aria-label="Schematic coefficient plot. Penalized estimates sit shrunk toward zero with narrow intervals that miss the true values; debiased estimates sit near the true values with wider intervals that cover them.">
+        <defs>
+          <style>
+            .ax{stroke:var(--line);stroke-width:1}
+            .zero{stroke:var(--ink-3);stroke-width:1;stroke-dasharray:3 3;opacity:.7}
+            .tk{fill:var(--ink-3);font-family:var(--mono);font-size:11px}
+            .lb{fill:var(--ink-2);font-family:var(--mono);font-size:11.5px}
+            .lg{fill:var(--ink-2);font-family:var(--sans);font-size:12px}
+            .ciA{stroke:var(--ink-3);stroke-width:2;opacity:.75}
+            .ciB{stroke:var(--accent);stroke-width:2}
+            .ptA{fill:var(--ink-3);opacity:.85}
+            .ptB{fill:var(--accent)}
+            .tru{stroke:var(--ink);stroke-width:1.6;opacity:.85}
+          </style>
+        </defs>
+
+        <!-- legend -->
+        <line class="tru" x1="90" y1="22" x2="90" y2="36"></line>
+        <text class="lg" x="99" y="33">true value</text>
+        <line class="ciA" x1="190" y1="29" x2="226" y2="29"></line>
+        <circle class="ptA" cx="208" cy="29" r="3.4"></circle>
+        <text class="lg" x="234" y="33">penalized fit</text>
+        <line class="ciB" x1="340" y1="29" x2="386" y2="29"></line>
+        <circle class="ptB" cx="363" cy="29" r="3.4"></circle>
+        <text class="lg" x="394" y="33">debiased</text>
+
+        <!-- zero line -->
+        <line class="zero" x1="273" y1="48" x2="273" y2="252"></line>
+
+        <!-- beta 1 -->
+        <text class="lb" x="78" y="74" text-anchor="end">β₁</text>
+        <line class="tru" x1="567" y1="60" x2="567" y2="82"></line>
+        <line class="ciA" x1="457" y1="63" x2="515" y2="63"></line>
+        <circle class="ptA" cx="486" cy="63" r="3.4"></circle>
+        <line class="ciB" x1="504" y1="79" x2="622" y2="79"></line>
+        <circle class="ptB" cx="563" cy="79" r="3.4"></circle>
+
+        <!-- beta 2 -->
+        <text class="lb" x="78" y="114" text-anchor="end">β₂</text>
+        <line class="tru" x1="438" y1="100" x2="438" y2="122"></line>
+        <line class="ciA" x1="358" y1="103" x2="409" y2="103"></line>
+        <circle class="ptA" cx="383" cy="103" r="3.4"></circle>
+        <line class="ciB" x1="387" y1="119" x2="497" y2="119"></line>
+        <circle class="ptB" cx="442" cy="119" r="3.4"></circle>
+
+        <!-- beta 3 (true zero) -->
+        <text class="lb" x="78" y="154" text-anchor="end">β₃</text>
+        <line class="tru" x1="273" y1="140" x2="273" y2="162"></line>
+        <circle class="ptA" cx="273" cy="143" r="3.4"></circle>
+        <text class="tk" x="285" y="147">shrunk to exactly 0</text>
+        <line class="ciB" x1="233" y1="159" x2="335" y2="159"></line>
+        <circle class="ptB" cx="284" cy="159" r="3.4"></circle>
+
+        <!-- beta 4 -->
+        <text class="lb" x="78" y="194" text-anchor="end">β₄</text>
+        <line class="tru" x1="163" y1="180" x2="163" y2="202"></line>
+        <line class="ciA" x1="185" y1="183" x2="237" y2="183"></line>
+        <circle class="ptA" cx="211" cy="183" r="3.4"></circle>
+        <line class="ciB" x1="105" y1="199" x2="215" y2="199"></line>
+        <circle class="ptB" cx="160" cy="199" r="3.4"></circle>
+
+        <!-- beta 5 -->
+        <text class="lb" x="78" y="234" text-anchor="end">β₅</text>
+        <line class="tru" x1="493" y1="220" x2="493" y2="242"></line>
+        <line class="ciA" x1="394" y1="223" x2="453" y2="223"></line>
+        <circle class="ptA" cx="423" cy="223" r="3.4"></circle>
+        <line class="ciB" x1="427" y1="239" x2="541" y2="239"></line>
+        <circle class="ptB" cx="486" cy="239" r="3.4"></circle>
+
+        <!-- axis -->
+        <line class="ax" x1="90" y1="258" x2="645" y2="258"></line>
+        <line class="ax" x1="90" y1="258" x2="90" y2="263"></line>
+        <line class="ax" x1="273" y1="258" x2="273" y2="263"></line>
+        <line class="ax" x1="457" y1="258" x2="457" y2="263"></line>
+        <line class="ax" x1="640" y1="258" x2="640" y2="263"></line>
+        <text class="tk" x="90" y="277" text-anchor="middle">−0.5</text>
+        <text class="tk" x="273" y="277" text-anchor="middle">0</text>
+        <text class="tk" x="457" y="277" text-anchor="middle">0.5</text>
+        <text class="tk" x="640" y="277" text-anchor="middle">1.0</text>
+        <text class="tk" x="365" y="294" text-anchor="middle">coefficient value</text>
+      </svg>
+    </div>
+    <figcaption>Schematic of the problem my dissertation addresses: penalized estimates are pulled
+      toward zero and carry intervals too narrow to cover the truth, while debiasing recovers both the
+      location and an honest width. Illustrative — not results from a study.</figcaption>
+  </figure>
+</section>
+
+<section class="wrap" id="publications">
+  <h2>Publications</h2>
+
+  <div class="sublabel">Peer-reviewed journal articles</div>
+  <div class="recs">
+    <div class="rec"><span class="idx">[1]</span><div class="body">
+      <span class="me">Bhuiyan, M. M. H.</span>, Senaratne, P. S., Alnofaie, S., &amp; Khan, N. I. (2026).
+      Identification of socio-demographic determinants of child malnutrition (age 0–5 years) at the
+      household level, Bangladesh: Penalized approaches. <cite>Reproductive, Female and Child Health</cite>.
+      <a href="https://doi.org/10.1002/rfc2.70100">10.1002/rfc2.70100</a>
+    </div></div>
+    <div class="rec"><span class="idx">[2]</span><div class="body">
+      Carter, A., Zhang, M., Trejo, B., …, <span class="me">Bhuiyan, M. M. H.</span>, et al. (2026).
+      Global, regional, and national burden of HIV/AIDS, 1990–2023. <cite>The Lancet HIV</cite>.
+      <a href="https://doi.org/10.1016/S2352-3018(26)00147-5">10.1016/S2352-3018(26)00147-5</a>
+    </div></div>
+    <div class="rec"><span class="idx">[3]</span><div class="body">
+      Vongpradith, A., Dominguez, R., Tudor Car, L., …, <span class="me">Bhuiyan, M. M. H.</span>, et al.
+      (2026). Global burden of enteric infectious diseases, diarrhoeal diseases, and corresponding
+      aetiologies, 1990–2023. <cite>The Lancet Infectious Diseases</cite>.
+      <a href="https://doi.org/10.1016/S1473-3099(26)00194-5">10.1016/S1473-3099(26)00194-5</a>
+    </div></div>
+    <div class="rec"><span class="idx">[4]</span><div class="body">
+      GBD 2023 Heart Failure Collaborators, Johnson, C. O., Abbasi, M., …,
+      <span class="me">Bhuiyan, M. M. H.</span>, et al. (2026). Global, regional, and national burden
+      of heart failure, 1990–2023. <cite>JAMA Cardiology</cite>.
+      <a href="https://doi.org/10.1001/jamacardio.2026.4068">10.1001/jamacardio.2026.4068</a>
+    </div></div>
+    <div class="rec"><span class="idx">[5]</span><div class="body">
+      Areda, D., Kim, H., Kang, J., Shalev, N., …, <span class="me">Bhuiyan, M. M. H.</span>, et al.
+      (2026). Global, regional, and national burden of tetanus in 204 countries and territories,
+      1990–2023. <cite>eClinicalMedicine</cite>, 100, 104202.
+      <a href="https://doi.org/10.1016/j.eclinm.2026.104202">10.1016/j.eclinm.2026.104202</a>
+    </div></div>
+  </div>
+
+  <div class="sublabel">Under review <span class="chip">in progress</span></div>
+  <div class="recs">
+    <div class="rec"><span class="idx">[1]</span><div class="body">
+      <span class="me">Bhuiyan, M. M. H.</span> BioBERT-derived clinical text representations and sparse
+      principal components of multi-omics data for breast cancer survival prediction: A
+      leakage-controlled cross-validated benchmark. <cite>PLOS ONE</cite>.
+      <a href="https://doi.org/10.64898/2026.08.31.26361875">Preprint: 10.64898/2026.08.31.26361875</a>
+    </div></div>
+    <div class="rec"><span class="idx">[2]</span><div class="body">
+      <span class="me">Bhuiyan, M. M. H.</span>, Deb, D., &amp; Ahiduzzaman, M. Topological and
+      multivariate characterization of physiological biomarker profiles in diabetes among older U.S.
+      adults: Evidence across multiple NHANES cycles.
+      <cite>Journal of Diabetes and Its Complications</cite>.
+    </div></div>
+    <div class="rec"><span class="idx">[3]</span><div class="body">
+      Ahiduzzaman, M., Deb, D., <span class="me">Bhuiyan, M. M. H.</span>, &amp; Ross, E. A. Beyond
+      random splitting: Temporal validation of machine learning for chronic kidney disease prediction.
+      <cite>Journal of the American Medical Informatics Association</cite>.
+    </div></div>
+    <div class="rec"><span class="idx">[4]</span><div class="body">
+      <span class="me">Bhuiyan, M. M. H.</span>, Idrish, M. H. B., Deb, D., &amp; Ahiduzzaman, M.
+      Counting household-level child malnutrition among children under five years in Bangladesh:
+      A spatial cross-sectional study. <cite>Scientific Reports</cite>.
+    </div></div>
+    <div class="rec"><span class="idx">[5]</span><div class="body">
+      <span class="me">Bhuiyan, M. M. H.</span>, Ahmed, F., &amp; Idrish, M. H. B. Classification of OM,
+      TC in Northern Thailand's agricultural soil using a high-accuracy ML approach: near-infrared
+      (NIR) spectral data. <cite>Discover Soil</cite>.
+    </div></div>
+  </div>
+
+  <div class="sublabel">Preprints</div>
+  <div class="recs">
+    <div class="rec"><span class="idx">[1]</span><div class="body">
+      <span class="me">Bhuiyan, M. M. H.</span> (2024). Socio-demographic determinants of child
+      malnutrition age 0–5 years in Bangladesh: NB and ZINB approaches. <cite>arXiv</cite>:2406.03515.
+      <a href="https://arxiv.org/abs/2406.03515">arxiv.org/abs/2406.03515</a>
+    </div></div>
+    <div class="rec"><span class="idx">[2]</span><div class="body">
+      <span class="me">Bhuiyan, M. M. H.</span> (2024). The rule of link functions on binomial regression
+      model: A cross-sectional study on child malnutrition, Bangladesh. <cite>arXiv</cite>:2403.17948.
+      <a href="https://arxiv.org/abs/2403.17948">arxiv.org/abs/2403.17948</a>
+    </div></div>
+  </div>
+
+  <div class="sublabel">Conference presentations</div>
+  <div class="recs">
+    <div class="rec"><span class="idx">[1]</span><div class="body">
+      <span class="me">Bhuiyan, M. M. H.</span>, &amp; Deb, D. (2026). Topological and multivariate
+      characterization of physiological biomarker profiles in diabetes among older U.S. adults.
+      International Society for Quality Growth and Development (ISQGD) Conference.
+    </div></div>
+    <div class="rec"><span class="idx">[2]</span><div class="body">
+      <span class="me">Bhuiyan, M. M. H.</span>, Senaratne, P. S., Alnofaie, S., &amp; Khan, N. I. (2025).
+      Identification of socio-demographic determinants of child malnutrition at the household level,
+      Bangladesh. Poster, American Statistical Association (ASA) Florida Chapter Meeting.
+    </div></div>
+    <div class="rec"><span class="idx">[3]</span><div class="body">
+      <span class="me">Bhuiyan, M. M. H.</span>, &amp; Tasdan, F. (2022). A comparison of five link
+      functions with MCMC simulation under the GLM approach for binary response variables.
+      9th Annual Graduate Research Conference, Western Illinois University.
+    </div></div>
+    <div class="rec"><span class="idx">[4]</span><div class="body">
+      <span class="me">Bhuiyan, M. M. H.</span>, &amp; Man, K. (2021). Impact of remittance on
+      non-agricultural production: Evidence from the Nepal Living Standards Survey.
+      8th Annual Graduate Research Conference, Western Illinois University.
+    </div></div>
+  </div>
+</section>
+
+<section class="wrap" id="teaching">
+  <h2>Teaching</h2>
+  <p class="lede">Students should understand why a statistical method is appropriate before they learn
+    how to implement it.</p>
+  <p>When I introduce linear regression, I begin with scatterplots — trend, slope, intercept, and what a
+    relationship between two variables actually means — before any formula appears. Computation follows
+    understanding rather than substituting for it. I use R and Python throughout, but I insist that
+    software output be interpreted critically: a p-value is the beginning of an argument, not the end of
+    one. A student who can run a regression but cannot say what it assumes has not yet learned regression.</p>
+  <p>My research supplies the data. Public GBD estimates let an introductory class chart disease mortality
+    since 1990 and compute change across decades, while an upper-division class extends the same data to
+    multiple regression and uncertainty intervals. What I value most is the discussion these force: counts
+    versus rates, why age-standardization matters, and why an observed trend is not a cause.</p>
+  <p>I completed UCF's Preparing Tomorrow's Faculty Program in 2026, a twelve-week program in higher
+    education pedagogy, and served as instructor for MATH 110 at Western Illinois University.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Course</th><th scope="col">Title</th><th scope="col">Level</th><th scope="col">Term</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="code">STA 4852</td><td>Applied Time Series</td><td class="lvl">Undergraduate</td><td class="term">Spring 2026</td></tr>
+        <tr><td class="code">STA 4241</td><td>Statistical Learning</td><td class="lvl">Undergraduate</td><td class="term">Fall 2025</td></tr>
+        <tr><td class="code">STA 6238</td><td>Logistic Regression</td><td class="lvl">Graduate</td><td class="term">Spring 2025</td></tr>
+        <tr><td class="code">STA 6106</td><td>Statistical Computing I</td><td class="lvl">Graduate</td><td class="term">Fall 2024</td></tr>
+        <tr><td class="code">STA 4164</td><td>Statistical Methods III</td><td class="lvl">Undergraduate</td><td class="term">Fall 2023, Spring 2024</td></tr>
+        <tr><td class="code">STA 6236</td><td>Regression Analysis</td><td class="lvl">Graduate</td><td class="term">Fall 2023</td></tr>
+        <tr><td class="code">STA 4163</td><td>Statistical Methods II</td><td class="lvl">Undergraduate</td><td class="term">Spring 2023</td></tr>
+        <tr><td class="code">STA 2014</td><td>Principles of Statistics</td><td class="lvl">Undergraduate</td><td class="term">Fall 2022</td></tr>
+        <tr><td class="code">ISC 4241</td><td>Data Science I</td><td class="lvl">Undergraduate</td><td class="term">Fall 2022</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prep">
+    <div><b>Prepared to teach</b><span>Introductory and applied statistics; statistical methods I–III;
+      regression and logistic regression; experimental design; applied time series; statistical computing
+      in R, Python, and SAS; data science; statistical and machine learning; and, at the graduate level,
+      high-dimensional statistics, survival analysis, and Bayesian methods.</span></div>
+  </div>
+</section>
+
+<section class="wrap" id="experience">
+  <h2>Experience</h2>
+  <div class="entries">
+
+    <div class="entry">
+      <div class="meta"><span class="when">2026</span><span>Orlando, FL</span></div>
+      <h4>Graduate Research Assistant — University of Central Florida</h4>
+      <p style="font-size:.92rem;color:var(--ink-3);margin:0">UCF MammoChat: an AI-driven platform for
+        personalized breast cancer patient support, funded by the Florida Department of Health.</p>
+      <ul>
+        <li>Designed and administered Qualtrics survey instruments assessing psychosocial experiences,
+          patient needs, and healthcare outcomes.</li>
+        <li>Ran qualitative and quantitative analyses of survey and focus-group data on anxiety,
+          depression, coping strategies, and support needs.</li>
+        <li>Applied large language models and NLP to patient narratives.</li>
+        <li>Drafted two IRB protocols for human-subjects studies, both approved.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="meta"><span class="when">2025 – present</span><span>Remote</span></div>
+      <h4>Collaborator, Global Burden of Disease Study — IHME</h4>
+      <ul>
+        <li>Selected into the GBD Collaborator Network; completed GBD estimation methods training.</li>
+        <li>Named author on GBD 2023 analyses published in <cite>The Lancet HIV</cite>,
+          <cite>The Lancet Infectious Diseases</cite>, <cite>JAMA Cardiology</cite>, and
+          <cite>eClinicalMedicine</cite>.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="meta"><span class="when">2022 – 2026</span><span>Orlando, FL</span></div>
+      <h4>Graduate Teaching Assistant — University of Central Florida</h4>
+      <ul>
+        <li>Instructor for the Data Science Lab for two years, leading hands-on computing sessions in
+          R, Python, and SAS across nine undergraduate and graduate courses.</li>
+        <li>Held office hours and adapted explanations graphically, algebraically, and computationally
+          for students across a wide range of preparation.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="meta"><span class="when">2018 – 2019</span><span>Dhaka, Bangladesh</span></div>
+      <h4>Research Assistant, Data Analyst — SURCH</h4>
+      <ul>
+        <li>Cleaned, monitored, and analyzed national survey data in SPSS and R, and wrote the technical
+          reports delivered to client agencies.</li>
+        <li>Multiple Indicator Cluster Survey (MICS 2019) for UNICEF and the Bangladesh Bureau of
+          Statistics — a two-stage stratified survey of roughly 64,000 households.</li>
+        <li>Three further UNICEF, a2i, and USAID studies on children in Sylhet tea gardens, maternal and
+          newborn health, and ready-made-garment sector workers.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="wrap" id="education-skills">
+  <h2>Education &amp; tools</h2>
+  <div class="entries">
+    <div class="entry">
+      <h4>Ph.D., Big Data Analytics — University of Central Florida</h4>
+      <div class="meta"><span class="when">Expected Spring 2027</span>
+        <span>Dissertation: <em>Inference Using Debiased Fused Lasso</em> · Advisor: Dr. Mengyu Xu</span></div>
+    </div>
+    <div class="entry">
+      <h4>M.S., Statistics and Data Science — University of Central Florida</h4>
+      <div class="meta"><span class="when">2024</span></div>
+    </div>
+    <div class="entry">
+      <h4>M.S., Applied Mathematics · M.S., Applied Statistics and Decision Science — Western Illinois University</h4>
+      <div class="meta"><span class="when">2022 · 2021</span><span>Certificate in Business Analytics, 2021</span></div>
+    </div>
+    <div class="entry">
+      <h4>B.S., Applied Statistics — University of Dhaka</h4>
+      <div class="meta"><span class="when">2013</span></div>
+    </div>
+  </div>
+
+  <div class="prep" style="margin-top:28px">
+    <div><b>Programming</b><span>R, Python, SAS, SQL, SPSS</span></div>
+    <div><b>Methods</b><span>Penalized and high-dimensional inference, survival analysis, Bayesian
+      hierarchical modeling, complex survey analysis, time series, statistical learning</span></div>
+    <div><b>NLP &amp; AI</b><span>BioBERT, large language models, transformer-based text representation</span></div>
+    <div><b>Visualization</b><span>Tableau, Power BI</span></div>
+    <div><b>Reproducibility</b><span>Git, R Markdown, LaTeX, Qualtrics</span></div>
+  </div>
+</section>
+
+<section class="wrap" id="contact">
+  <h2>Contact</h2>
+  <div class="contact">
+    <p>I am completing my Ph.D. in Spring 2027 and am interested in postdoctoral and faculty positions in
+      statistics, biostatistics, and data science. I am glad to hear from potential collaborators.</p>
+    <div class="emailrow">
+      <code id="addr">md856078@ucf.edu</code>
+      <button class="copy" id="copyBtn" type="button">Copy address</button>
+    </div>
+    <p style="font-size:.93rem;color:var(--ink-2)">
+      <a href="https://scholar.google.com/citations?user=TKDYNuAAAAAJ">Google Scholar</a> ·
+      <a href="https://www.linkedin.com/in/mmh-bhuiyan/">LinkedIn</a> ·
+      School of Data, Mathematical, and Statistical Sciences, University of Central Florida, Orlando, FL
+    </p>
+  </div>
+</section>
+
+<footer class="wrap">Md Mehedi Hasan Bhuiyan · Updated October 2026</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('copyBtn');
+  var addr = document.getElementById('addr');
+  if (!btn || !addr) return;
+  btn.addEventListener('click', function () {
+    var done = function () {
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = 'Copy address'; }, 1800);
+    };
+    try {
+      navigator.clipboard.writeText(addr.textContent.trim()).then(done, select);
+    } catch (e) { select(); }
+    function select() {
+      var r = document.createRange();
+      r.selectNodeContents(addr);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      btn.textContent = 'Select and copy';
+      setTimeout(function () { btn.textContent = 'Copy address'; }, 2200);
+    }
+  });
+})();
+</script>
+</body>
+</html>
